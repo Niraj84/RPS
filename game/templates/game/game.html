@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!--jquery and Popper-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- <script src="../../../static/js/playGame.js"></script> -->
+    <script>
+        var ClickCount = 0;
+        var userscore= 0;
+        var botscore=0;
+        var final_result;
+       
+        function myGame(userinput) {
+            var clickLimit = 3; //Max number of clicks
+            if(ClickCount>=clickLimit) {
+                if (userscore>botscore){
+                    final_result='You won !!' 
+                }
+                else if (userscore<botscore){
+                    final_result='You lost !!'
+                }
+                else{
+                    final_result="it's Tie"
+                }
+                alert(final_result);
+                return false
+
+            }
+            ClickCount++;
+            botinput =Math.floor(Math.random() * 3)+1;
+
+            if(userinput==1){
+                document.getElementById("userImage").src="{% static 'rock.PNG' %}";
+            }
+            if(userinput==2){
+                document.getElementById("userImage").src="{% static 'Paper.PNG' %}";
+            }
+            if(userinput==3){
+                document.getElementById("userImage").src="{% static 'Scissor.PNG' %}";
+            }
+            
+            if(botinput==1){
+                document.getElementById("botImage").src="{% static 'rock_bot.png' %}";
+            }
+            if(botinput==2){
+                document.getElementById("botImage").src="{% static 'Paper_bot.png' %}";
+            }
+            if(botinput==3){
+                document.getElementById("botImage").src="{% static 'Scissor_bot.png' %}";
+            }
+            
+            if(userinput==1 & botinput==3 | userinput==2 & botinput==1| userinput==3 & botinput==2){
+                document.getElementById("result").innerHTML='You Won';
+                document.getElementById("round").innerHTML=ClickCount;
+                userscore+=10;
+                document.getElementById("userscore").innerHTML='Score:'+userscore;
+
+            }
+            if (botinput==1 & userinput==3 | botinput==2 & userinput==1| botinput==3 & userinput==2){
+                document.getElementById("result").innerHTML='You Lost';
+                document.getElementById("round").innerHTML=ClickCount;
+                botscore+=10;
+                document.getElementById("botscore").innerHTML='Score:'+botscore;
+
+            }
+            if(userinput==botinput){
+                document.getElementById("result").innerHTML='Tie';
+                document.getElementById("round").innerHTML=ClickCount;
+            }
+
+        }
+
+    </script>
+    <style>
+        body  {
+          background-image: url("../../../static/image2.jpg");
+          background-color: #cccccc;
+          background-size: cover;
+        }
+    </style>
+    <title>Rock Paper and Scissor</title>
+  </head>
+  <body style="height:700px">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'user-create' %}">
+                  {% load static %}
+                  <img src="{% static 'Logo.jpg' %}" class="img-circle" alt="Logo" width="30" height="30">
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'user-create' %}">Home</a></li>
+                <li class="active"><a href="{% url 'game' %}">Game</a></li>
+                <li class="active"><a href="{% url 'user-detail' %}">Result</a></li> 
+                <li class="active"><a href="{% url 'certificate' %}">Certificate</a></li>
+                <!-- <li class="active"><a href="{% url 'help' %}">Help</a></li> -->
+            </ul>
+        <form class="navbar-form navbar-right" action="#">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Work in progress" name="search">
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                  <i class="glyphicon glyphicon-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+    </nav>
+    <h1 style="margin-top:70px;margin-left:40px;color: bisque;">Welcome!!</h1>
+    <div class="row">
+        <div class="col-sm-4">
+             <div style="margin-top:30px;margin-left:250px;color: bisque">
+                <h3>User</h3>
+             </div>
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div style="margin-top:30px;padding-left:30px;margin-right:90px;color: bisque">
+                <h3>Computer</h3>
+            </div>
+        </div>          
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4" style="margin-top: 10px;margin-left:150px"> 
+            {% load static %}
+            <img src="{% static 'rock.PNG' %}" id="userImage"class="rounded" alt="rock" width="250" height="250"> 
+        </div>
+        <div class="col-sm-2" style="margin-top: 20px;text-align:left">
+            <h3 style="color:rgba(212, 19, 119)"><strong>Round:</strong></h3>
+            <h3 id="round" style="color:rgba(8, 252, 232)">0</h3>
+            <h3 style="color:rgba(212, 19, 119)"><strong>Result:</strong></h3>
+            <h3 id="result" style="color:rgba(8, 252, 232)">0</h3>
+        </div>
+        <div class="col-sm-4" style="margin-top: 10px;margin-left:10px"> 
+            {% load static %}
+            <img src="{% static 'rock_bot.png' %}" id="botImage" class="rounded" alt="rock_bot" width="250" height="250"> 
+        </div>   
+    </div>
+    <div class="row">
+        <div class="col-sm-3"  style="margin-left:100px;padding-left:140px;color: bisque"><h3 id="userscore">Score:0</h3></div>
+        <div class="col-sm-4" style="margin-top:20px;padding-left:100px">
+            
+                <button type="button" onclick="myGame(1)" class="btn btn-success" >Rock</button>
+                <button type="button" onclick="myGame(2)" class="btn btn-info" >Paper</button>
+                <button type="button" onclick="myGame(3)" class="btn btn-warning">Scissor</button>
+
+            
+        </div>
+        <div class="col-sm-3"><h3 id="botscore" style="margin-left:30px;padding-left:10px;color: bisque">Score:0</h3></div>
+    </div>
+
+  </body>
+</html>

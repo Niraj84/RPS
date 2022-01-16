@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!--jquery and Popper-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body  {
+          background-image: url("../static/image2.jpg");
+          background-color: #cccccc;
+        }
+    </style>
+    <title>Rock Paper and Scissor</title>
+  </head>
+  <body style="height:700px">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'user-create' %}">
+              {% load static %}
+              <img src="{% static 'Logo.jpg' %}" class="img-circle" alt="Logo" width="30" height="30">
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="{% url 'user-create' %}">Home</a></li>
+            <!-- <li class="active"><a href="{% url 'game' %}">Game</a></li>
+            <li class="active"><a href="{% url 'user-detail' %}">Result</a></li> 
+            <li class="active"><a href="{% url 'certificate' %}">Certificate</a></li> -->
+            <li class="active"><a href="{% url 'help' %}">Help</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" action="#">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Work in progress" name="search">
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                  <i class="glyphicon glyphicon-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+    </nav> 
+<div class="container" style="height:680px;margin-top:80px;background-color:white">
+  <div class="row" style="margin-top:20px;margin-left:10px;">
+    <div class="col-sm-6">
+      <p style="font-size:18px"><strong>What it is:</strong>An easy, fast game that everyone probably already knows. But I like to be comprehensive, so here we go with some rock-paper-scissors instructions. Rock-paper-scissors is a quick win-loose game that is often used to determine who will go first or who will win some other small privilege.
+      Best for: Two players. But you could have a giant rock-paper-scissors tournament with tons of people!
+      What you need: Nothing! Well, technically speaking, each player needs to use their two hands.
+      </p>
+      <p style="font-size:18px"><strong>Best for:</strong>Two players. But you could have a giant rock-paper-scissors tournament with tons of people!</p>
+      <p style="font-size:18px"><strong>What you need:</strong>> Nothing! Well, technically speaking, each player needs to use their two hands.</p>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-5"> 
+      {% load static %}
+      <img src="{% static 'game pic.PNG' %}" class="img-circle" alt="game pic" width="300" height="300">
+    </div>
+    <div class="col-sm-12">
+      <p style="font-size:18px"><strong>How to play:</strong>In rock-paper-scissors, two players will each randomly choose one of three hand
+         signs: rock (made by making a fist), paper (made by laying your hand flat), or scissors (made by holding out two fingers to look like scissors). 
+         Both players show their signs at the same time to see who will win. Here are the rules that determine which sign beats another:
+      </p>
+      <ul style="font-size:18px">
+        <li>Rock wins over scissors (because rock smashes scissors)</li>
+        <li>Scissors wins over paper (because scissors cut paper)</li>
+        <li>Paper wins over rock (because paper covers rock)</li>
+      </ul><br>
+      <p style="font-size:18px">If both players show the same sign, it’s a tie. And that’s basically the whole game! It’s often played in a best-two-out-of-three format
+         as a quick contest to decide who gets to go first or something like that.
+      </p>
+
+    </div>
+</div>
+  
+</body>
+</html>
